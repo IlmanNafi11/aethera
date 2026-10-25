@@ -26,10 +26,11 @@ src/
     Philosophy.tsx             four numbered rules
     Journal.tsx                three entries
     ReachUs.tsx                contact form with validation
-    Footer.tsx                 sitemap, CTA, back to top
+    Footer.tsx                 contact CTA, sitemap, scenic wordmark
   styles/
     fonts.css                  Instrument Serif + Inter
-    theme.css                  Tailwind entry, tokens, keyframes
+    theme.css                  Tailwind entry, tokens, keyframes, footer scene
+public/media/                  hero poster, sectional stills, footer.webp
 ```
 
 ## Design system
@@ -43,6 +44,28 @@ src/
 | Body | Inter | nav, paragraphs, labels, forms |
 
 Recurring rules: one black pill CTA per view (`rounded-full`, `hover:scale-[1.03]`), hairline dividers at `border-black/[0.07]`, uppercase `11px` eyebrows at `0.22em` tracking, `max-w-7xl` content with `px-6 sm:px-8`, and `fade-rise` motion (20px lift, 0.8s ease-out) on every entrance.
+
+## Scenic footer
+
+The footer hands the page off to a photograph instead of closing it with a rule. The valley
+(`public/media/footer.webp`, 2752×1489) fades up out of pure white at its top edge, so no
+divider is needed between the last section and the scene.
+
+The wordmark is *buried*, not overlaid. `Footer.tsx` paints the landscape **twice** inside one
+box — a distance pass under the type, a foreground pass above it — both with identical framing
+(`object-cover object-bottom`) and the same `footer-shade` wash. The foreground pass is cut open
+by `footer-veil`, a mask that stays clear for the scene's first 60%, reaches 30% cover at 72% and
+is opaque from 84% down. Because the two passes agree pixel for pixel, the foreground can only
+cover what lies behind it: the letters read clearly at the cap line and dissolve into the near
+hills lower down, with no seam and no second crop to keep in sync.
+
+Every vertical value is a multiple of `--wordmark` (`clamp(5rem, 32vw, 40rem)`, set on
+`<footer>`): the scene height (`1.18 ×`), the wordmark's baseline offset (`-0.155 ×`) and the
+mist band (`42%` of the scene). The mist line therefore sits at the same place on the letters at
+every width — verified from 390 px to 2560 px. The legal row uses `mt-auto` so the copyright
+always lands on the last pale band, just before the terrain darkens.
+
+The wordmark is `aria-hidden`: it repeats the studio name already present in the logo above.
 
 ## Interaction
 

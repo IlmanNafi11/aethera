@@ -77,6 +77,60 @@
   );
 }
 
+/*
+ * Scenic footer.
+ *
+ * The valley is painted twice inside one box: the distant pass (landscape +
+ * shade + mist) and the foreground pass, which `footer-veil` opens up over the
+ * wordmark. Both passes share the framing and the shade, so they agree pixel
+ * for pixel; the foreground therefore cannot show a seam of its own — it can
+ * only cover what lies behind it, which is what buries the letters in the hill.
+ *
+ * --wordmark is the wordmark's font size, set by the component. The veil and
+ * the scene height are both derived from it, so the mist line stays at the same
+ * place on the letters at every viewport width.
+ */
+@utility footer-mist {
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0,
+    #ffffff 22%,
+    rgb(255 255 255 / 0.97) 38%,
+    rgb(255 255 255 / 0.86) 52%,
+    rgb(255 255 255 / 0.62) 66%,
+    rgb(255 255 255 / 0.32) 80%,
+    rgb(255 255 255 / 0.08) 92%,
+    rgb(255 255 255 / 0) 100%
+  );
+}
+
+@utility footer-shade {
+  background: linear-gradient(
+    to bottom,
+    rgb(16 34 26 / 0) 52%,
+    rgb(16 34 26 / 0.06) 70%,
+    rgb(16 34 26 / 0.16) 88%,
+    rgb(16 34 26 / 0.26) 100%
+  );
+}
+
+@utility footer-veil {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 60%,
+    rgb(0 0 0 / 0.3) 72%,
+    black 84%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 60%,
+    rgb(0 0 0 / 0.3) 72%,
+    black 84%
+  );
+}
+
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
     animation: none;
