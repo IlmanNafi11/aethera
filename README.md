@@ -49,6 +49,7 @@ Recurring rules: one black pill CTA per view (`rounded-full`, `hover:scale-[1.03
 - **Scroll-spy nav** — an `IntersectionObserver` with a `-45%` root margin marks the section occupying the viewport centre; the header switches from overlay to `fixed` frosted glass after 24px.
 - **Studio list** — hovering, focusing, or tapping a row crossfades its still into the shared preview frame.
 - **Reveal** — sections lift and fade once on first intersection, staggered by 80–160ms.
+- **Marquee** — the partner labels repeat in as many copies as the viewport needs (`ResizeObserver`), and each 38s cycle slides by exactly one copy width, so the strip tiles seamlessly and never shows a break at any width.
 - **Form** — validates name and email inline, shows a `Sending…` state, then a receipt message; `aria-live="polite"` announces every change.
 - **Reduced motion** — marquee stops, entrances resolve instantly, reveals are forced visible.
 
