@@ -13,6 +13,15 @@
   --animate-fade-rise-delay-2: fade-rise 0.8s ease-out 0.4s both;
 }
 
+/*
+ * The Studio pin. Single source of truth for the conditions, so the markup and
+ * the measuring code in Studio.tsx cannot drift apart. Keep in sync with
+ * PIN_QUERY there: wide enough for two columns, tall enough to hold the left
+ * column plus the panel's padding, and not something motion-sensitive users
+ * opted out of.
+ */
+@custom-variant pin (@media (min-width: 64rem) and (min-height: 45rem) and (prefers-reduced-motion: no-preference));
+
 @keyframes fade-rise {
   from {
     opacity: 0;
@@ -35,6 +44,37 @@
 
 @utility marquee-track {
   animation: marquee-scroll 38s linear infinite;
+}
+
+/*
+ * Pinned Studio card window. The band at the top of the mask is the strip
+ * *above* the line the two columns share: the card starts exactly on that
+ * line, so rows stay crisp until they scroll up into the band. The panel's
+ * top padding reserves the nav's height plus this same band, so the whole
+ * ramp is visible in the clear strip below the nav.
+ *
+ * --studio-fade-bottom is written per frame by the component and stays at 0%
+ * (fully opaque) once the end of the card is in view.
+ */
+@utility studio-fade {
+  --studio-band: 3rem;
+  --studio-fade-bottom: 0%;
+  padding-top: var(--studio-band);
+  margin-top: calc(var(--studio-band) * -1);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black var(--studio-band),
+    black calc(100% - var(--studio-fade-bottom)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black var(--studio-band),
+    black calc(100% - var(--studio-fade-bottom)),
+    transparent 100%
+  );
 }
 
 @media (prefers-reduced-motion: reduce) {
