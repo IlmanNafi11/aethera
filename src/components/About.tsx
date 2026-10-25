@@ -6,6 +6,35 @@ export function About() {
     <Section id="about" divider className="py-24 sm:py-32">
       <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
         <Reveal>
+          <figure className="relative overflow-hidden rounded-sm">
+            <img
+              src="/media/about.jpg"
+              alt="A quiet, sunlit frame from the Aethera reel"
+              loading="lazy"
+              decoding="async"
+              className="aspect-[4/3] w-full object-cover"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/55 via-transparent to-transparent" />
+            <figcaption className="absolute bottom-4 left-5 font-display text-sm tracking-tight text-[#000000]">
+              Reel still &mdash; winter light
+            </figcaption>
+          </figure>
+
+          <div className="mt-10 grid grid-cols-3 gap-6 border-t border-black/[0.07] pt-8">
+            {[
+              ['9', 'years practicing'],
+              ['62', 'works shipped'],
+              ['4', 'time zones, one room'],
+            ].map(([value, label]) => (
+              <div key={label}>
+                <p className="font-display text-4xl tracking-tight text-[#000000]">{value}</p>
+                <p className="mt-2 text-[13px] leading-snug text-[#6F6F6F]">{label}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal delay={140} className="lg:pt-16">
           <Eyebrow>About</Eyebrow>
           <DisplayHeading className="mt-6 text-4xl sm:text-5xl md:text-6xl">
             A small house for{' '}
@@ -39,35 +68,6 @@ export function About() {
               Mara Ellison &mdash; Founder, Creative Director
             </cite>
           </blockquote>
-        </Reveal>
-
-        <Reveal delay={140} className="lg:pt-16">
-          <figure className="relative overflow-hidden rounded-sm">
-            <img
-              src="/media/about.jpg"
-              alt="A quiet, sunlit frame from the Aethera reel"
-              loading="lazy"
-              decoding="async"
-              className="aspect-[4/3] w-full object-cover"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/55 via-transparent to-transparent" />
-            <figcaption className="absolute bottom-4 left-5 font-display text-sm tracking-tight text-[#000000]">
-              Reel still &mdash; winter light
-            </figcaption>
-          </figure>
-
-          <div className="mt-10 grid grid-cols-3 gap-6 border-t border-black/[0.07] pt-8">
-            {[
-              ['9', 'years practicing'],
-              ['62', 'works shipped'],
-              ['4', 'time zones, one room'],
-            ].map(([value, label]) => (
-              <div key={label}>
-                <p className="font-display text-4xl tracking-tight text-[#000000]">{value}</p>
-                <p className="mt-2 text-[13px] leading-snug text-[#6F6F6F]">{label}</p>
-              </div>
-            ))}
-          </div>
         </Reveal>
       </div>
     </Section>
