@@ -102,9 +102,23 @@ export function Footer() {
         </Reveal>
       </Section>
 
-      {/* Pushed to the floor of the footer, so the legal line always lands on
-          the last pale band of the scene, just before the hills turn dark. */}
-      <div className="relative z-10 mt-auto">
+      {/* The legal line is pulled down onto the scene by a margin derived from
+          --wordmark, like every other vertical value in the footer. The scene's
+          top edge is pure white and the photograph only starts to show from
+          roughly 17% of the scene's height down, and that point is a fixed
+          share of the scene, so a fixed number of pixels would do nothing at
+          one width and bury the band at another. The margin has two parts: the
+          band's own padding below its last line (1rem, the same at every
+          width because the last row is always the last thing in the band),
+          plus a quarter of --wordmark, which drops that last line a fifth of
+          the way into the scene — just past the point where the image begins,
+          so the band rests on the photograph without climbing into the mist.
+          The footer is sized by its content, so shrinking it here carries the
+          block above down by the same distance and their gap never changes. */}
+      <div
+        className="relative z-10 mt-auto"
+        style={{ marginBottom: 'calc(-1rem - var(--wordmark) * 0.25)' }}
+      >
         <Section className="pb-4">
           <div className="flex flex-col gap-4 border-t border-black/[0.07] pt-6 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-[13px] text-[#000000]">
